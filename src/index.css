@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primitive */
+  --neutral-0: #FFFFFF;
+  --neutral-50: #F8F8FA;
+  --neutral-100: #F0F0F5;
+  --neutral-200: #E4E4ED;
+  --neutral-300: #C8C8D8;
+  --neutral-400: #9898B0;
+  --neutral-500: #6E6E88;
+  --neutral-600: #4A4A62;
+  --neutral-700: #2E2E42;
+  --neutral-800: #1A1A2E;
+
+  --gold-50: #FDF8EE;
+  --gold-100: #FAF0D4;
+  --gold-200: #F0D998;
+  --gold-300: #E4C26A;
+  --gold-400: #D4A843;
+  --gold-500: #B8901E;
+  --gold-600: #8A6A0A;
+
+  --blue-50: #EFF6FF;
+  --blue-600: #2563EB;
+  --green-50: #F0FDF4;
+  --green-500: #22C55E;
+  --green-600: #16A34A;
+  --red-50: #FFF1F2;
+  --red-500: #EF4444;
+  --orange-50: #FFF7ED;
+  --orange-500: #F97316;
+  --orange-600: #EA6C00;
+  --purple-50: #FAF5FF;
+  --purple-600: #7C3AED;
+
+  /* Semantic */
+  --bg-base: var(--neutral-0);
+  --bg-subtle: var(--neutral-50);
+  --bg-muted: var(--neutral-100);
+  --surface-card: var(--neutral-0);
+  --surface-nav: rgba(255,255,255,0.88);
+  --border-default: var(--neutral-200);
+  --border-strong: var(--neutral-300);
+  --border-focus: var(--gold-400);
+  --text-primary: var(--neutral-800);
+  --text-secondary: var(--neutral-500);
+  --text-tertiary: var(--neutral-400);
+  --text-disabled: var(--neutral-300);
+  --text-inverse: var(--neutral-0);
+  --brand-primary: var(--gold-400);
+  --brand-subtle: var(--gold-50);
+  --brand-text: var(--gold-600);
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.09), 0 2px 4px rgba(0,0,0,0.05);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-brand: 0 0 0 3px rgba(212,168,67,0.20);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Noto Sans JP', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Screen transitions */
+.screen-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.screen-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 380ms cubic-bezier(0.32, 0.72, 0, 1), opacity 380ms;
+}
+.screen-exit {
+  transform: scale(1);
+  opacity: 1;
+}
+.screen-exit-active {
+  transform: scale(0.96);
+  opacity: 0;
+  transition: transform 380ms cubic-bezier(0.32, 0.72, 0, 1), opacity 380ms;
+}
+
+/* Card animation */
+.card-enter {
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
+}
+.card-enter-active {
+  opacity: 1;
+  transform: none;
+  transition: all 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+.skeleton {
+  animation: shimmer 1.8s ease-in-out infinite;
+  background-color: var(--neutral-200);
+  border-radius: var(--radius-sm);
+}
+
+/* Tappable feedback */
+.tappable {
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.tappable:active {
+  transform: scale(0.97);
+  transition: transform 150ms ease-in-out;
+}
+
+/* Scrollbar hide */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
