@@ -122,7 +122,14 @@ export function useSearch() {
       setStatus('success')
     } catch (err) {
       console.error('Search error:', err)
-      setError('通信エラー。もう一度お試しください。')
+      const msg = err instanceof Error ? err.message : ''
+      if (msg.includes('credit balance is too low')) {
+        setError('APIクレジットが不足しています。console.anthropic.com でチャージしてください。')
+      } else if (msg.includes('401') || msg.includes('403')) {
+        setError('APIキーが無効です。設定画面で確認してください。')
+      } else {
+        setError('通信エラー。もう一度お試しください。')
+      }
       setStatus('error')
     }
   }, [settings.claudeApiKey, settings.newsApiKey])
